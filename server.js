@@ -19,6 +19,8 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
  * /example:
  *  get:
  *      description: Returns a string proving the backend is working.
+ *      tags:
+ *          - example
  *      produces:
  *          - application/json
  *      responses:
@@ -49,6 +51,8 @@ app.get('/courses', (req, res) => {
  * /customers:
  *  get:
  *      description: Returns all the customers in the system.
+ *      tags:
+ *          - customers
  *      produces:
  *          - application/json
  *      responses:
@@ -74,6 +78,8 @@ app.get("/customers", (req, res) => {
  * /customers:
  *  post:
  *      description: Saves a customer.
+ *      tags:
+ *          - customers
  *      produces:
  *          - application/json
  *      parameters:
@@ -104,6 +110,8 @@ app.post("/customers", (req, res) => {
  * /customers:
  *  delete:
  *      description: Deletes a customer.
+ *      tags:
+ *          - customers
  *      produces:
  *          - application/json
  *      parameters:
@@ -155,4 +163,9 @@ app.listen(port, () => `Listening on port ${port}`);
  *          - properties:
  *              _id:
  *                  type: string
+ * tags:
+ *  - name: customers
+ *    description: CRUD for customers
+ *  - name: example
+ *    description: example calls to the API
  */
