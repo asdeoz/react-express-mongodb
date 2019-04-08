@@ -21,7 +21,23 @@ const NoSql = {
                     resolve(res);
                 });
             });
-        })
+        });
+    },
+    UpdateCustomer(customer) {
+        return new Promise((resolve, reject) => {
+            client.connect(config.url, (err, db) => {
+                if (err) reject(err);
+                const dbo = db.db(config.db);
+                let query = { _id: new mongodb.ObjectID(customer['_id']) };
+                let values = { $set: { name: customer.name, address: customer.address } };
+                dbo.collection(config.collection).updateOne(query, values, (err, res) => {
+                    if (err) reject(err);
+                    console.log(`1 document updated`);
+                    db.close();
+                    resolve(res);
+                });
+            });
+        });
     },
     DeleteCustomer(id) {
         return new Promise((resolve, reject) => {
@@ -35,7 +51,7 @@ const NoSql = {
                     resolve(res);
                 });
             });
-        })
+        });
     },
     GetCustomers() {
         return new Promise((resolve, reject) => {
