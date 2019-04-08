@@ -3,11 +3,11 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const options = {
     swaggerDefinition: {
         info: {
-            title: 'KIT API',
+            title: 'Express API',
             version: '1.0.0',
-            description: 'KIT API for use with any front end.',
+            description: 'Express API for use with any front end.',
             contact: {
-                email: 'carles.garciabercial@phoenix.edu'
+                email: 'asdeoz@github.com'
             }
         },
         host: 'localhost:3001',
