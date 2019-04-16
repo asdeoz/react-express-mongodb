@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 // import logo from './logo.svg';
 import './App.css';
-import SwaggerUI from "swagger-ui-react";
+// import SwaggerUI from "swagger-ui-react";
 import "swagger-ui-react/swagger-ui.css";
-import swaggerFile from './swagger.yaml';
+// import swaggerFile from './swagger.yaml';
+// const CustomerComponent = require('./components/customer-component.jsx');
+import CustomerComponent from './components/customer-component';
 
 class App extends Component {
   render() {
@@ -24,7 +26,8 @@ class App extends Component {
       //     </a>
       //   </header>
       // </div>
-      <SwaggerUI url={swaggerFile} />
+      // <SwaggerUI url={swaggerFile} />
+      <CustomerComponent />
     );
   }
 }

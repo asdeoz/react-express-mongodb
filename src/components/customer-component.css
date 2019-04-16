@@ -1,0 +1,29 @@
+div.customer-cards-container {
+    display: inline-block;
+    margin: 10px 10px 0 10px;
+}
+
+div.customer-card {
+    float: left;
+    width: 220px;
+    padding: 7px 5px;
+    margin: 0 10px 10px 0;
+    border: black solid 1px;
+    border-radius: 5px;
+    background: #EEEEEE;
+}
+
+div.customer-card > button {
+    background-color: #AAEEAA;
+    padding: 5px 7px;
+    border: solid 1px #66AA66;
+    border-radius: 5px;
+    margin: 10px 7px 0 0;
+    float: right;
+    color: #444444;
+    font-weight: 600;
+}
+
+span.field {
+    font-weight: bold;
+}

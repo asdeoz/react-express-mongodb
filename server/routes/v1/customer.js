@@ -33,6 +33,44 @@ router.get("/customers", (req, res) => {
 
 /**
  * @swagger
+ * /customers/{id}:
+ *  get:
+ *      description: Gets a customer.
+ *      tags:
+ *          - customers
+ *      produces:
+ *          - application/json
+ *      parameters:
+ *          - name: id
+ *            description: Customer id
+ *            in: path
+ *            required: true
+ *            type: string
+ *            schema:
+ *              type: string
+ *              required:
+ *                - id
+ *              properties:
+ *                id:
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description: customer retrieved
+ *          500:
+ *              description: an error occurred while getting a customer
+ */
+router.get("/customers/:id", (req, res) => {
+    let id = req.params.id;
+
+    Mongo.GetCustomer(id).then(result => {
+        res.send(result);
+    }, err => {
+        res.status(500).send(`An error occurred while getting a customer.`);
+    });
+});
+
+/**
+ * @swagger
  * /customers:
  *  post:
  *      description: Saves a customer.

@@ -48,7 +48,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 > DB_PASSWORD = {password}  
 > DB_SERVER = {server}  
 > DB_NAME = {db name}  
-> DB_PORT = {db port}
+> DB_PORT = {db port}  
+> API_URL = {api url}
 
 ## Disclaimer
 
