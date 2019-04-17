@@ -13,16 +13,12 @@ div.form-container > div::after {
     display: table;
 }
 
-div.form-container > div > button {
+button.btn-save {
     background-color: #AAEEAA;
-    padding: 5px 7px;
-    border: solid 1px #66AA66;
-    border-radius: 5px;
-    margin: 0 0 10px 0;
+    border-color: #66AA66;
     float: right;
-    color: #444444;
-    font-weight: 600;
     width: 80px;
+    margin-right: 0;
 }
 
 div.form-field {

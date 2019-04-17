@@ -19,6 +19,7 @@ const NoSql = {
                         if (err) throw err;
                         console.log("1 document inserted");
                         db.close();
+                        if(res && res.result) res.result.customer = customer;
                         resolve(res);
                     });
                 });
@@ -51,11 +52,11 @@ const NoSql = {
     DeleteCustomer(id) {
         return new Promise((resolve, reject) => {
             try {
-                const _id = new mongodb.ObjectID(id);
+                const mid = new mongodb.ObjectID(id);
                 client.connect(config.url, (err, db) => {
                     if (err) reject(err);
                     const dbo = db.db(config.db);
-                    dbo.collection(config.collection).deleteOne({ _id: _id }, (err, res) => {
+                    dbo.collection(config.collection).deleteOne({ _id: mid }, (err, res) => {
                         if (err) reject(err);
                         console.log(`1 document deleted`);
                         db.close();

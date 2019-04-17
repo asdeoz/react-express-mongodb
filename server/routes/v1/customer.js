@@ -94,7 +94,7 @@ router.get("/customers/:id", (req, res) => {
  */
 router.post("/customers", (req, res) => {
     let customer = new Customer(req.body.name, req.body.address);
-    Mongo.SaveCustomer(customer).then(result => {
+    Mongo.SaveCustomer(customer).then((result) => {
         res.send(result);
     }, err => {
         res.status(500).send(`An error occurred while saving a customer.`);
@@ -150,7 +150,7 @@ router.put("/customers/:id", (req, res) => {
 
 /**
  * @swagger
- * /customers:
+ * /customers/{id}:
  *  delete:
  *      description: Deletes a customer.
  *      tags:
@@ -158,9 +158,9 @@ router.put("/customers/:id", (req, res) => {
  *      produces:
  *          - application/json
  *      parameters:
- *          - name: customer id
+ *          - name: id
  *            description: Customer id
- *            in: body
+ *            in: path
  *            required: true
  *            type: string
  *            schema:
@@ -176,8 +176,8 @@ router.put("/customers/:id", (req, res) => {
  *          500:
  *              description: an error occurred while deleting the customer
  */
-router.delete("/customers", (req, res) => {
-    let customerId = req.body.id;
+router.delete("/customers/:id", (req, res) => {
+    let customerId = req.params.id;
     Mongo.DeleteCustomer(customerId).then(result => {
         res.send(result);
     }, err => {

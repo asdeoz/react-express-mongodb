@@ -13,17 +13,30 @@ div.customer-card {
     background: #EEEEEE;
 }
 
-div.customer-card > button {
-    background-color: #AAEEAA;
-    padding: 5px 7px;
-    border: solid 1px #66AA66;
-    border-radius: 5px;
-    margin: 10px 7px 0 0;
+div.customer-card > div {
     float: right;
-    color: #444444;
-    font-weight: 600;
 }
 
 span.field {
     font-weight: bold;
+}
+
+button.btn-new {
+    background-color: #9999FF;
+    border-color: #6666FF;
+    margin-left: 10px;
+}
+
+button.btn-delete {
+    background-color: #EEAAAA;
+    border-color: #AA6666;
+    margin-bottom: 0;
+    margin-right: 0;
+}
+
+button.btn-select {
+    background-color: #AAEEAA;
+    border-color: #66AA66;
+    margin-bottom: 0;
+    margin-right: 0;
 }

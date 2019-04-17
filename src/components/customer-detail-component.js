@@ -37,7 +37,7 @@ class CustomerDetailComponent extends Component {
                     <input type="text" name="customerAddress" value={this.state.address} onChange={this.onAddressChange} />
                 </div>
                 <div>
-                    <button type="button" onClick={() => this.props.save(this.state)}>Save</button>
+                    <button className="btn btn-save" type="button" onClick={() => this.props.save(this.state)}>Save</button>
                 </div>
             </div>
         )
