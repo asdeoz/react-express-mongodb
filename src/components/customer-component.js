@@ -10,7 +10,8 @@ class CustomerComponent extends Component {
 
         this.state = {
             customers: [],
-            selectedCustomer: null
+            selectedCustomer: null,
+            isDeleting: false
         };
 
         this.onCustomerSelected = this.onCustomerSelected.bind(this);
@@ -36,14 +37,20 @@ class CustomerComponent extends Component {
     }
 
     onNewCustomer = () => {
-        this.setState({selectedCustomer: {_id: null, name: '', address: ''}});
+        if(!this.state.selectedCustomer) {
+            this.setState({selectedCustomer: {_id: null, name: '', address: ''}});
+        } else {
+            this.setState({selectedCustomer: null});
+        }
     }
 
     onCustomerDeleted = (customer) => {
         // eslint-disable-next-line no-restricted-globals
         if(confirm(`Are you sure you want to delete "${customer.name}"?`) === true) {
+            this.setState({isDeleting: true});
             axios.delete('/v1/customers/' + customer._id).then(res => {
                 console.log(res);
+                this.setState({isDeleting: false});
                 if(res && res.data && res.data.ok && res.data.n) {
                     const index = this.state.customers.findIndex(c => c._id === customer._id);
                     if(index !== -1) this.setState(state => {
@@ -55,6 +62,7 @@ class CustomerComponent extends Component {
                     alert(`Something went wrong deleting the customer... Please, try again later.`);
                 }
             }, err => {
+                this.setState({isDeleting: false});
                 alert(`Something went wrong deleting the customer... Error: ${err}`);
             });
         }
@@ -104,7 +112,7 @@ class CustomerComponent extends Component {
                 <span className="field">Name: </span>{customer.name}<br/>
                 <span className="field">Address: </span>{customer.address}
                 <div>
-                    <button className="btn btn-delete" type="button" onClick={() => this.onCustomerDeleted(customer)}>Delete</button>
+                    <button className="btn btn-delete" type="button" onClick={() => this.onCustomerDeleted(customer)} disabled={this.state.isDeleting}>Delete</button>
                     <button className="btn btn-select" type="button" onClick={() => this.onCustomerSelected(customer)}>Select Customer</button>
                 </div>
             </div>
@@ -114,11 +122,15 @@ class CustomerComponent extends Component {
     render() {
         return (
             <div>
-                <div className="customer-cards-container">
-                    {this.state.customers.map(c => this.customerCard(c))}
-                </div>
+                {this.state.customers && this.state.customers.length ? 
+                    <div className="customer-cards-container">
+                        {this.state.customers.map(c => this.customerCard(c))}
+                    </div>
+                    :
+                    <div className="loading"><span>Loading...</span></div>
+                }
                 <div>
-                    <button className="btn btn-new" type="button" onClick={this.onNewCustomer}>New Customer</button>
+                    <button className="btn btn-new" type="button" onClick={this.onNewCustomer}>{this.state.selectedCustomer ? 'Cancel' : 'New Customer'}</button>
                 </div>
                 <div>
                     {this.state.selectedCustomer ? <CustomerDetailComponent customer={this.state.selectedCustomer} save={this.saveCustomer} /> : null}

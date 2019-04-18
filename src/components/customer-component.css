@@ -1,3 +1,9 @@
+div.loading {
+    margin: 10px;
+    font-weight: bold;
+    font-style: italic;
+}
+
 div.customer-cards-container {
     display: inline-block;
     margin: 10px 10px 0 10px;
@@ -32,6 +38,10 @@ button.btn-delete {
     border-color: #AA6666;
     margin-bottom: 0;
     margin-right: 0;
+}
+
+button:disabled.btn-delete {
+    background-color: #AA6666;
 }
 
 button.btn-select {
